@@ -1,5 +1,3 @@
-version: "1"
-
 linters:
   enable:
     - gofmt
@@ -16,6 +14,27 @@ linters:
     - revive
     - whitespace
 
+linters-settings:
+  gocyclo:
+    min-complexity: 15
+  revive:
+    rules:
+      - name: exported
+        severity: warning
+        disabled: false
+        arguments: ["disableStutteringCheck"]
+
 run:
   timeout: 5m
-  tests: true 
+  tests: true
+  exclude-dirs:
+    - examples
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gocyclo
+        - errcheck
+        - dupl
+        - gosec 
