@@ -3,18 +3,31 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 	"time"
 
 	"github.com/joaoh82/spacetimedb-golang/client"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	// Load environment variables
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	dbURL := os.Getenv("SPACETIMEDB_URL")
+	if dbURL == "" {
+		log.Fatal("SPACETIMEDB_URL environment variable is not set")
+	}
+
 	// Create a new client
-	spacetimeClient, err := client.NewClient("https://your-spacetimedb-instance.com")
+	spacetimeClient, err := client.NewClient(dbURL)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer spacetimeClient.Close()
+	fmt.Println("spacetimeClient", spacetimeClient)
 
 	// Create a new identity
 	identityResp, err := spacetimeClient.CreateIdentity()
@@ -25,7 +38,7 @@ func main() {
 
 	// Create a new client with the identity and token
 	spacetimeClient, err = client.NewClient(
-		"https://your-spacetimedb-instance.com",
+		dbURL,
 		client.WithToken(identityResp.Token),
 		client.WithIdentity(identityResp.Identity),
 	)

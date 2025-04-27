@@ -1,5 +1,7 @@
 # SpacetimeDB Golang SDK
 
+[![Go Build and Test](https://github.com/joaoh82/spacetimedb-golang/actions/workflows/go.yml/badge.svg)](https://github.com/joaoh82/spacetimedb-golang/actions/workflows/go.yml)
+
 A Golang SDK for interacting with SpacetimeDB instances through both HTTP and WebSocket APIs.
 
 ## Installation

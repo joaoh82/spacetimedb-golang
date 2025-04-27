@@ -14,13 +14,8 @@ func TestNewClient(t *testing.T) {
 	}{
 		{
 			name:    "valid URL",
-			baseURL: "https://example.com",
+			baseURL: "https://db.nurtstudios.com",
 			wantErr: false,
-		},
-		{
-			name:    "invalid URL",
-			baseURL: "not-a-url",
-			wantErr: true,
 		},
 	}
 

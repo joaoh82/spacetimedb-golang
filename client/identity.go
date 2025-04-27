@@ -36,6 +36,8 @@ func (c *Client) CreateIdentity() (*IdentityResponse, error) {
 		return nil, fmt.Errorf("error decoding response: %w", err)
 	}
 
+	fmt.Println("identityResp", identityResp)
+
 	return &identityResp, nil
 }
 
