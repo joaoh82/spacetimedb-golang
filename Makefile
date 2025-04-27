@@ -57,3 +57,8 @@ run-example: build
 ## Run the tests
 test:
 	go test -v ./...
+
+.PHONY: lint
+## Run the tests
+lint:
+	golangci-lint run ./...
