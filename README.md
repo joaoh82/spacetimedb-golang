@@ -104,6 +104,34 @@ for {
 - Token-based authentication
 - Error handling and context support
 
+### Environment Configuration
+
+The SDK supports configuration through environment variables using a `.env` file. Create a `.env` file in your project root with the following variables:
+
+```env
+SPACETIMEDB_URL=https://your-spacetimedb-instance.com
+```
+
+To load the environment variables in your application:
+
+```go
+import "github.com/joho/godotenv"
+
+func main() {
+    // Load environment variables from .env file
+    if err := godotenv.Load(); err != nil {
+        log.Fatal("Error loading .env file")
+    }
+
+    // Use the environment variables
+    dbURL := os.Getenv("SPACETIMEDB_URL")
+    
+    // Create client with the URL from environment
+    client, err := client.NewClient(dbURL)
+    // ... rest of your code
+}
+```
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.

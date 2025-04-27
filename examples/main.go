@@ -27,7 +27,6 @@ func main() {
 		log.Fatal(err)
 	}
 	defer spacetimeClient.Close()
-	fmt.Println("spacetimeClient", spacetimeClient)
 
 	// Create a new identity
 	identityResp, err := spacetimeClient.CreateIdentity()
